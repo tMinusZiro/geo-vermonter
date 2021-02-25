@@ -5,8 +5,11 @@ import Map from "./components/Map";
 import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
+import RandomSpot from "./components/RandomSpot.js"
 
 function App() {
+
+  //[latitude,longitude]
   const [center, setCenter] = useState([43.88, -72.7317]);
   //viewcenter is the current center being viewed
   const [viewCenter, setViewCenter] = useState([43.88, -72.7317]);
@@ -34,6 +37,7 @@ function App() {
           <Info />
         </div>
         {/* <Modal /> */}
+        <RandomSpot setCenter={setCenter}/>
       </div>
     </>
   );
