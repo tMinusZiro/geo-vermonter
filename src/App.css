@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+body {
+  margin: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*-------------------- Map --------------------*/
+#map-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 50px;
+  position: relative;
+}
+
+/*-------------------- Header --------------------*/
+#header {
+  background-color: rgb(64, 69, 39);
   color: white;
+  text-align: center;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin: 0;
+  padding: 10px 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#nav {
+  margin: 0;
+  padding: 10px 0px;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+/*-------------------- Movement Buttons --------------------*/
+/* attribution: <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */
+#movement-buttons{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 400;
+  bottom: 100px;
+  right: 35vw;
+}
+
+.move-button{
+  cursor: pointer;
+}
+
+#movement-buttons-top,#movement-buttons-bottom{
+  height: 30px;
+}
+
+#movement-buttons-center{
+display:flex;
+align-items: center;
+}
+
+#return{
+  height: 40px;
+  width: 50px;
+  border-radius: 10px;
+  background-color: orange;
+}
+
+#north{
+  height: 30px;
+  width: 30px;
+  transform: rotate(270deg);
+}
+
+#south{
+  height: 30px;
+  width: 30px;
+  transform: rotate(90deg);
+}
+
+#east{
+  height: 30px;
+  width: 30px;
+}
+
+#west{
+  height: 30px;
+  width: 30px;
+  transform: rotate(180deg);
 }
