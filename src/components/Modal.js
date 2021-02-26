@@ -23,9 +23,9 @@ import { useState, useEffect } from "react";
 
 const Modal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [chosen, setChosen] = useState(null);
-  const [selected, setSelected] = useState({});
-  const [countyData, setCountyData] = useState(null);
+  const [submittedCounty, setSubmittedCounty] = useState("");
+  const [selectedCounty, setSelectedCounty] = useState({});
+  const [countyData, setCountyData] = useState({});
 
   function showModal() {
     setModalOpen(true);
@@ -40,27 +40,34 @@ const Modal = (props) => {
   //if they match then declare it so and update the info field with relevant data such as county etc...from json object
   //add points
   //this begins from a click event
+  console.log(` Submitted County is outside: ${submittedCounty}`);
 
   //onChange Event Handler
   function handleSubmit(e) {
     //synthetic event as argument
     e.preventDefault();
-
-    setChosen({
-      county: selected.county,
-    });
-
-    console.log(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
-    );
+    //calling function that will check if user selected correctly
+    checkWin();
+    // console.log(
+    //   `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
+    // );
   }
 
+  //lot to unpack here
+  //every time user selects a county BUT does not yet submit this function gets called
+  //we call the fetch function and store that data in countyData state
+  //set the e.target.value to a variable
   function handleChange(e) {
+    fetchData();
+    //intermediate storage for selected county
     let name = e.target.name;
-    let currVal = selected;
-    console.log("from change handler");
-    currVal[name] = e.target.value;
-    setSelected(currVal);
+    //passing in intermediate storage to chosen state
+    let currVals = selectedCounty;
+    currVals[name] = e.target.value;
+    console.log(` Target Value: ${e.target.value}`);
+    setSelectedCounty(currVals);
+    setSubmittedCounty(selectedCounty.county);
+    console.log(selectedCounty);
   }
 
   //fetch inside
@@ -70,12 +77,29 @@ const Modal = (props) => {
     )
       .then((res) => res.json())
       .then((jsonObj) => {
-        setCountyData(
-          jsonObj.address.county.replace(" County", "").toLowerCase()
-        );
-        console.log(` Data = ${countyData}`);
+        //calling the countData change function and assigning the state to the current location json object containing useful location info
+        setCountyData(jsonObj);
       });
   };
+
+  function checkWin() {
+    //tunneling into the currentlocation json and logging out the relavent info
+    console.log(`Fetch Data is: ${countyData}`);
+    console.log(`Fetch lat: ${countyData.lat}`);
+    console.log(`Fetch lat: ${countyData.lon}`);
+    console.log(
+      ` You are in = ${countyData.address.county
+        .replace(" County", "")
+        .toLowerCase()}`
+    );
+    console.log(submittedCounty);
+    //conditional checking if the user selected the truthy county by checking it against the current location
+    if (submittedCounty !== countyData.address.county) {
+      alert(`You Guessed Incorrectly`);
+    } else {
+      alert(`You Guessed Correctly`);
+    }
+  }
 
   //.catch((err) => {
   //   alert('Something went wrong...')
@@ -87,15 +111,15 @@ const Modal = (props) => {
       <div>
         <div className="modal">
           <h1>Choose The County</h1>
-          <h4> {countyData}</h4>
 
           <form onSubmit={handleSubmit}>
             <select
               name="county"
-              value={selected.counties}
+              value={selectedCounty.county}
               onChange={handleChange}
             >
-              <option value={"Grand Isle"}>Grand Isle</option>
+              <option value="">--Please Choose a County--</option>
+              <option value={"grand isle"}>Grand Isle</option>
               <option value={"franklin"}>Franklin</option>
               <option value={"orleans"}>Orleans</option>
               <option value={"essex"}>Essex</option>
@@ -110,7 +134,7 @@ const Modal = (props) => {
               <option value={"bennington"}>Bennington</option>
               <option value={"windham"}>Windham</option>
             </select>
-            <input type="submit" />
+            <input type="submit" value="submit" />
             <button className="fetch-button" onClick={fetchData}>
               Fetch Current County
             </button>
