@@ -45,19 +45,19 @@ h1 {
   justify-content: space-around;
 }
 
-li{
+li {
   width: 300px;
 }
 
 /*-------------------- Movement Buttons --------------------*/
 /* attribution: <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */
-#navigation-container{
+#navigation-container {
   width: 20vw;
   height: 50vh;
   border: 1px solid red;
 }
 
-#navigation{
+#navigation {
   text-align: center;
   background-color: black;
   color: white;
@@ -138,11 +138,11 @@ li{
 }
 
 .modal {
-  width: 75vw;
-  height: 75vh;
+  width: 30vw;
+  height: 30vh;
   background-color: rgba(100, 148, 237, 0.657);
   border-radius: 5px;
   text-align: center;
-  font-size: 3em;
+  font-size: 1em;
   z-index: 2;
 }

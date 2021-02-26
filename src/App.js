@@ -6,7 +6,7 @@ import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
-import StatusButtons from "./components/Button.js"
+import StatusButtons from "./components/Button.js";
 
 function App() {
   //declares variable to set and store the location of the marker[latitude,longitude]
@@ -19,7 +19,7 @@ function App() {
   const [score, setScore] = useState("100");
 
   //declare variable to store and set zoom
-  const [zoom, setZoom] = useState(8)
+  const [zoom, setZoom] = useState(8);
 
   //declares variable to store and set information in info box
   const [information, setInformation] = useState({
@@ -48,20 +48,22 @@ function App() {
           />
         </div>
         <div className="board-containers">
-          <Map center={center} viewCenter={viewCenter} zoom={zoom}/>
+          <Map center={center} viewCenter={viewCenter} zoom={zoom} />
         </div>
         <div className="buttonControl">
-          <StatusButtons >
-
-          </StatusButtons>
+          <StatusButtons></StatusButtons>
         </div>
         <div className="board-containers">
-          <Info information={information}/>
+          <Info information={information} />
         </div>
-        {/* <Modal /> */}
+        <Modal />
       </div>
       {/* NOTE: ultimately this information might need to be passed into the Button component since "start" button will trigger these things to happen */}
-      <RandomSpot setCenter={setCenter} setInformation={setInformation} setZoom={setZoom}/>
+      <RandomSpot
+        setCenter={setCenter}
+        setInformation={setInformation}
+        setZoom={setZoom}
+      />
     </>
   );
 }
