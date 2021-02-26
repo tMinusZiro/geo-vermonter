@@ -2,6 +2,8 @@ import { MapContainer, TileLayer, Polygon, Marker, Polyline } from "react-leafle
 import borderData from "../data/border";
 
 function Map(props) {
+  //this takes the longitutde and latitude from borderData and switches it to latitude then longitude
+  //leaftlet has latitude then longitutde
   let vtOutline = borderData.geometry.coordinates[0].map(coords => [coords[1], coords[0]])
 
   return (

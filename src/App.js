@@ -8,6 +8,8 @@ import Modal from "./components/Modal";
 import StatusButtons from "./components/Button.js"
 
 function App() {
+
+  //[latitude,longitude]
   const [center, setCenter] = useState([43.88, -72.7317]);
   //viewcenter is the current center being viewed
   const [viewCenter, setViewCenter] = useState([43.88, -72.7317]);
@@ -40,6 +42,7 @@ function App() {
           <Info />
         </div>
         {/* <Modal /> */}
+        <RandomSpot setCenter={setCenter}/>
       </div>
     </>
   );
