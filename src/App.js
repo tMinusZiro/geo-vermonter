@@ -5,6 +5,7 @@ import Map from "./components/Map";
 import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
+import StatusButtons from "./components/Button.js"
 
 function App() {
   const [center, setCenter] = useState([43.88, -72.7317]);
@@ -29,6 +30,11 @@ function App() {
         </div>
         <div className="board-containers">
           <Map center={center} viewCenter={viewCenter} />
+        </div>
+        <div className="buttonControl">
+          <StatusButtons >
+
+          </StatusButtons>
         </div>
         <div className="board-containers">
           <Info />
