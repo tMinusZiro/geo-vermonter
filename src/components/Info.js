@@ -1,16 +1,28 @@
 import React from "react";
 import { useState } from "react";
 
+// info component contains information panel with include lat/long/county and town
 const Info = (props) => {
+
   return (
     <div id="info-wrapper">
-      <div id="info">Placeholder Info Box</div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo corrupti
-        tempore natus placeat laboriosam? Quidem, assumenda hic quam
-        reprehenderit quibusdam molestias corporis maiores aut? Atque libero
-        fugiat iure animi mollitia?
-      </p>
+      <h2 id="info">Information</h2>
+      <div>
+        <h4>Latitude</h4>
+        <p>{props.information.latitude}</p>
+      </div>
+      <div>
+        <h4>Longitude</h4>
+        <p>{props.information.longitude}</p>
+      </div>
+      <div>
+        <h4>County</h4>
+        <p>{props.information.county}</p>
+      </div>
+      <div>
+        <h4>Town</h4>
+        <p>{props.information.town}</p>
+      </div>
     </div>
   );
 };
