@@ -6,6 +6,7 @@ import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
+import StatusButtons from "./components/Button.js"
 
 function App() {
   //declares variable to set and store the location of the marker[latitude,longitude]
@@ -48,6 +49,11 @@ function App() {
         </div>
         <div className="board-containers">
           <Map center={center} viewCenter={viewCenter} zoom={zoom}/>
+        </div>
+        <div className="buttonControl">
+          <StatusButtons >
+
+          </StatusButtons>
         </div>
         <div className="board-containers">
           <Info information={information}/>
