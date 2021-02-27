@@ -73,7 +73,7 @@ function RandomSpot(props) {
           props.setZoom(18)
         }}
       >
-        Random Spot
+        Start
       </button>
     </div>
   );
