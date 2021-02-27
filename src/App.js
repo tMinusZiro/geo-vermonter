@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Header score={score} setViewInstructions={setViewInstructions}/>
+      <Header score={score} setViewInstructions={setViewInstructions} />
       <div id="map-container">
         <div className="board-containers">
           <MovementButtons
@@ -56,8 +56,15 @@ function App() {
         <div className="board-containers">
           <Info information={information} />
         </div>
-        {/* <Modal currentCenter={center} /> */}
-        <Instructions viewInstructions={viewInstructions} setViewInstructions={setViewInstructions}/>
+        <Instructions
+          viewInstructions={viewInstructions}
+          setViewInstructions={setViewInstructions}
+        />
+        <Modal
+          currentCenter={center}
+          setInformation={setInformation}
+          information={information}
+        />
       </div>
 
       <div id="button-container">
