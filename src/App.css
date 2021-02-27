@@ -55,6 +55,8 @@ li {
   width: 20vw;
   height: 50vh;
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
 }
 
 #navigation {
@@ -162,4 +164,31 @@ li {
   height: 6vh;
   width: 8vw;
   margin: 20px;
+}
+
+/*-----------------How to Play ------------------------*/
+#how-to-play-wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  position: absolute;
+  z-index: 2;
+}
+
+.how-to-play-modal {
+  width: 40vw;
+  height: 60vh;
+  background-color: rgba(100, 148, 237, 0.657);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  z-index: 2;
+}
+
+.how-to-play-modal h3{
+  margin: 5px 20px;
+}
+
+.how-to-play-modal p{
+  margin: 0px 20px;
 }
