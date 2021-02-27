@@ -8,7 +8,6 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 25px;
-  border: 1px solid black;
   width: 100vw;
   position: relative;
 }
@@ -98,6 +97,11 @@ image:hover {
   width: 70px;
   border-radius: 10px;
   background-color: #5c2932;
+  color: white;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 #north {

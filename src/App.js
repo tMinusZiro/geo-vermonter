@@ -22,6 +22,9 @@ function App() {
   //declare variable to store and set zoom
   const [zoom, setZoom] = useState(8);
 
+  //declares an array to keep track of users movement from the start point (randomSpot)
+  const [pathArray, setPathArray] = useState([center]);
+
   //declare variable to show instructions model
   const [viewInstructions, setViewInstructions] = useState("hidden");
 
@@ -45,10 +48,12 @@ function App() {
             setViewCenter={setViewCenter}
             score={score}
             setScore={setScore}
+            pathArray={pathArray}
+            setPathArray={setPathArray}
           />
         </div>
         <div className="board-containers">
-          <Map center={center} viewCenter={viewCenter} zoom={zoom} />
+          <Map center={center} viewCenter={viewCenter} zoom={zoom} pathArray={pathArray}/>
         </div>
         <div className="board-containers">
           <Info information={information} />
@@ -71,7 +76,7 @@ function App() {
           setInformation={setInformation}
           setZoom={setZoom}
         />
-                <div className="buttonControl">
+        <div className="buttonControl">
           <StatusButtons></StatusButtons>
         </div>
       </div>
