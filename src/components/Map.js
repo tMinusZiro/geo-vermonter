@@ -4,7 +4,7 @@ import {
   Polygon,
   Marker,
   Polyline,
-  useMap
+  useMap,
 } from "react-leaflet";
 import borderData from "../data/border";
 import { useRef, useEffect } from "react";
@@ -22,7 +22,7 @@ function Map(props) {
   // //declare variable to constant to hold map reference
   // const mapRef = useRef();
   // console.log(`mapRef is ${mapRef}`)
-  console.log(`map container is ${MapContainer}`);
+  // console.log(`map container is ${MapContainer}`);
   // const map = useMap();
   // console.log(map)
 
