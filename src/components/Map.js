@@ -4,11 +4,11 @@ import {
   Polygon,
   Marker,
   Polyline,
-  useMap,
 } from "react-leaflet";
 import borderData from "../data/border";
 import { useRef, useEffect } from "react";
 import L from "leaflet";
+import AdjustMap from "./AdjustMap.js"
 
 // map component contains the amp and related styling
 function Map(props) {
@@ -17,16 +17,6 @@ function Map(props) {
     coords[1],
     coords[0],
   ]);
-
-  //------------------------------------------------------trying to figure out moving map --------------------------------------------//
-  // //declare variable to constant to hold map reference
-  // const mapRef = useRef();
-  // console.log(`mapRef is ${mapRef}`)
-  // console.log(`map container is ${MapContainer}`);
-  // const map = useMap();
-  // console.log(map)
-
-  //------------------------------------------------------trying to figure out moving map --------------------------------------------//
 
   //zoom & drag functionalities are disabled on the map to limit user interaction
   return (
@@ -41,6 +31,8 @@ function Map(props) {
         dragging={false}
         style={{ height: "600px", width: "600px" }}
       >
+        {/* allows adjustment of the map center and zoom properties */}
+        <AdjustMap center={props.viewCenter} zoom={props.zoom}/>
         <TileLayer
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"

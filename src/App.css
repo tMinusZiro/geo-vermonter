@@ -146,3 +146,20 @@ li {
   font-size: 1em;
   z-index: 2;
 }
+
+/*----------------- Game Play Buttons ------------------------*/
+#button-container{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#button-container button{
+  background-color:rgb(64, 69, 39);
+  color: white;
+  font-size: 25px;
+  border-radius: 5%;
+  height: 6vh;
+  width: 8vw;
+  margin: 20px;
+}

@@ -54,23 +54,26 @@ function RandomSpot(props) {
       insideVT = checkPointWithinBorder([newLatitude, newLongitude]);
     }
 
-    //once a random point is insideVT, setCenter sends the point to App.js
+    //once a random point is insideVT, setCenter sends the marker to App.js
     props.setCenter([newLatitude, newLongitude]);
+    // set viewCenter sends the view center to App.js
+    props.setViewCenter([newLatitude, newLongitude]);
   }
 
-  //a single button with onClick listener that triggers generatePointInsideVT, sets information in the info bar
+  //a single button with onClick listener that triggers generatePointInsideVT, adjusts zoom of map, sets information in the info bar
   return (
     <div>
       <button
         onClick={(evt) => {
           generatePointInsideVT();
+          // setCenter sends the zoom adjustment to App.js
+          props.setZoom(18);
           props.setInformation({
             latitude: "resetting",
             longitude: "resetting",
             county: "resetting",
             town: "resetting",
           });
-          props.setZoom(18)
         }}
       >
         Start

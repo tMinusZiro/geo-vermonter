@@ -29,10 +29,6 @@ function App() {
     town: "???",
   });
 
-  console.log(
-    `inside app.js view center is being accessed and is ${viewCenter}`
-  );
-
   return (
     <>
       <Header score={score} />
@@ -58,12 +54,15 @@ function App() {
         </div>
         <Modal currentCenter={center} />
       </div>
-      {/* NOTE: ultimately this information might need to be passed into the Button component since "start" button will trigger these things to happen */}
-      <RandomSpot
-        setCenter={setCenter}
-        setInformation={setInformation}
-        setZoom={setZoom}
-      />
+
+      <div id ="button-container">
+        <RandomSpot
+          setCenter={setCenter}
+          setViewCenter={setViewCenter}
+          setInformation={setInformation}
+          setZoom={setZoom}
+        />
+      </div>
     </>
   );
 }
