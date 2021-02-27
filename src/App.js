@@ -56,7 +56,11 @@ function App() {
         <div className="board-containers">
           <Info information={information} />
         </div>
-        <Modal currentCenter={center} />
+        <Modal
+          currentCenter={center}
+          setInformation={setInformation}
+          information={information}
+        />
       </div>
       {/* NOTE: ultimately this information might need to be passed into the Button component since "start" button will trigger these things to happen */}
       <RandomSpot
