@@ -7,7 +7,7 @@ import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
 import StatusButtons from "./components/Button.js";
-import HowToPlay from "./components/HowToPlay";
+import Instructions from "./components/Instructions.js";
 
 function App() {
   //declares variable to set and store the location of the marker[latitude,longitude]
@@ -22,8 +22,8 @@ function App() {
   //declare variable to store and set zoom
   const [zoom, setZoom] = useState(8);
 
-  //declare variable to show How To Play model
-  const [viewHowToPlay, setViewHowToPlay] = useState("hidden");
+  //declare variable to show instructions model
+  const [viewInstructions, setViewInstructions] = useState("hidden");
 
   //declares variable to store and set information in info box
   const [information, setInformation] = useState({
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Header score={score} setViewHowToPlay={setViewHowToPlay}/>
+      <Header score={score} setViewInstructions={setViewInstructions}/>
       <div id="map-container">
         <div className="board-containers">
           <MovementButtons
@@ -57,7 +57,7 @@ function App() {
           <Info information={information} />
         </div>
         {/* <Modal currentCenter={center} /> */}
-        <HowToPlay viewHowToPlay={viewHowToPlay} setViewHowToPlay={setViewHowToPlay}/>
+        <Instructions viewInstructions={viewInstructions} setViewInstructions={setViewInstructions}/>
       </div>
 
       <div id="button-container">

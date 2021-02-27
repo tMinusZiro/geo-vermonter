@@ -5,7 +5,7 @@ function Header(props) {
   return (
     <header id="header">
       <h1>Geo-Vermonter</h1>
-      <NavBar score={props.score} setViewHowToPlay={props.setViewHowToPlay}/>
+      <NavBar score={props.score} setViewInstructions={props.setViewInstructions}/>
     </header>
   );
 }

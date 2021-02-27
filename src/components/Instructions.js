@@ -1,12 +1,13 @@
-function HowToPlay(props) {
+//instruction component that generates modal to show how to play instructions
+function Instructions(props) {
   //toggles to visibility of the instruction model to visible
   function closeInstructions() {
-    props.setViewHowToPlay("hidden");
+    props.setViewInstructions("hidden");
   }
 
   return (
-    <div style={{ visibility: props.viewHowToPlay }} id="how-to-play-wrapper">
-      <div className="how-to-play-modal">
+    <div style={{ visibility: props.viewInstructions }} id="instruction-wrapper">
+      <div className="instruction-modal">
         <h1>How To Play</h1>
         <h3>Introduction</h3>
         <p>
@@ -35,10 +36,10 @@ function HowToPlay(props) {
           return button will return you to the starting point, with no reduction
           to your score. An incorrect guess reduces your score by 10 points.
         </p>
+        <button onClick={closeInstructions}>Let's Play!</button>
       </div>
-      <button onClick={closeInstructions}>Let's Play!</button>
     </div>
   );
 }
 
-export default HowToPlay;
+export default Instructions;
