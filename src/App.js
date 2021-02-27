@@ -57,11 +57,11 @@ function App() {
           viewInstructions={viewInstructions}
           setViewInstructions={setViewInstructions}
         />
-        <Modal
+        {/* <Modal
           currentCenter={center}
           setInformation={setInformation}
           information={information}
-        />
+        /> */}
       </div>
 
       <div id="button-container">

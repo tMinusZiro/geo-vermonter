@@ -69,10 +69,10 @@ function RandomSpot(props) {
           // setCenter sends the zoom adjustment to App.js
           props.setZoom(18);
           props.setInformation({
-            latitude: "resetting",
-            longitude: "resetting",
-            county: "resetting",
-            town: "resetting",
+            latitude: "???",
+            longitude: "???",
+            county: "???",
+            town: "???",
           });
         }}
       >

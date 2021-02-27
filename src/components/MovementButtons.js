@@ -82,12 +82,6 @@ function MovementButtons(props) {
             onClick={moveSouth}
           />
         </div>
-        {/* <p>
-        Once the game has started use these buttons to navigate around the map,
-        North, South, East or West. Each time you move, your score will go down
-        by 1 point. The center button will return you to the starting point,
-        with no reduction to your score.{" "}
-      </p> */}
       </div>
     </div>
   );
