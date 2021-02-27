@@ -50,9 +50,6 @@ function App() {
         <div className="board-containers">
           <Map center={center} viewCenter={viewCenter} zoom={zoom} />
         </div>
-        <div className="buttonControl">
-          <StatusButtons></StatusButtons>
-        </div>
         <div className="board-containers">
           <Info information={information} />
         </div>
@@ -74,6 +71,9 @@ function App() {
           setInformation={setInformation}
           setZoom={setZoom}
         />
+                <div className="buttonControl">
+          <StatusButtons></StatusButtons>
+        </div>
       </div>
     </>
   );

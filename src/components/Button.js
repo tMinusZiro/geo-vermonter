@@ -6,16 +6,13 @@ function StatusButtons(props) {
   useEffect(() => setDisabledButton(true), [true])
   return (
     <div>
-      <button name="start" onclick= {setDisabledButton}>
-        start
-      </button>
 
       <button name="Guess" disabled onclick="event( )">
         Guess
       </button>
 
       <button name="Quit" disabled onclick="event( )">
-        quit
+        Quit
       </button>
     </div>
   );
