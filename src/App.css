@@ -235,7 +235,7 @@ select:hover {
 }
 
 #button-container button {
-  background-color: rgb(64, 69, 39);
+  /* background-color: rgb(64, 69, 39); */
   color: white;
   font-size: 25px;
   border-radius: 5%;

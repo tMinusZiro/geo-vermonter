@@ -9,10 +9,10 @@ function MovementButtons(props) {
   //the second part is latitude (east & west)
   let currentLat = props.viewCenter[1];
 
-  function updateBreadCrumb() {
+  function updateBreadCrumbs(newLat, newLong) {
     const { coordinates } = props.pathArray;
     let tempArr = [...coordinates];
-    tempArr.push([props.viewCenter[0], props.viewCenter[1]]);
+    tempArr.push([newLat, newLong]);
     props.setPathArray({
       coordinates: tempArr,
     });
@@ -22,7 +22,7 @@ function MovementButtons(props) {
   function moveNorth() {
     props.setViewCenter([currentLong + 0.001, currentLat]);
     props.setScore(props.score - 1);
-
+    updateBreadCrumbs([currentLong + 0.001, currentLat]);
     // props.setPathArray({
     //   coordinates: [props.viewCenter[0], props.viewCenter[1]],
     // });
