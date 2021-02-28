@@ -2,7 +2,7 @@ import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
 import { useState } from "react";
-import Modal from "./Modal"
+import Modal from "./Modal";
 
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
@@ -77,7 +77,7 @@ function RandomSpot(props) {
 
   //-----Fetch--------//
   // fetches current location data, that will populate info box using a reverse address lookup API
-  console.log (props.currentCenter)
+  console.log(props.currentCenter);
   const fetchData = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
@@ -86,7 +86,6 @@ function RandomSpot(props) {
       .then((jsonObj) => {
         //calling the countData change function and assigning the state to the current location json object containing useful location info
         setCountyData(jsonObj);
-        
       });
   };
   //console.log (countyData.address.county)
@@ -97,9 +96,7 @@ function RandomSpot(props) {
       county: countyData.address.county,
       town: countyData.address.village,
     });
-   
   }
-
 
   //a single button with onClick listener that triggers generatePointInsideVT, adjusts zoom of map, sets information in the info bar
   return (
@@ -117,6 +114,7 @@ function RandomSpot(props) {
             county: "???",
             town: "???",
           });
+          fetchData();
         }}
       >
         Start
@@ -130,7 +128,19 @@ function RandomSpot(props) {
         Guess
       </button>
 
-      <button className="index-buttons" name="Quit" disabled={buttonState} onClick={() => {fetchData(); let timpOut = setTimeout(leaveGame, 2000)}}>
+      <button
+        className="index-buttons"
+        name="Quit"
+        disabled={buttonState}
+        onClick={() => {
+          leaveGame();
+
+          let timeout = setTimeout(function reset() {
+            alert(`Do you want to play again?`);
+            window.location.reload();
+          }, 2000);
+        }}
+      >
         Quit
       </button>
     </div>
