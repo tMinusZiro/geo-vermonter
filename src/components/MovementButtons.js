@@ -22,7 +22,11 @@ function MovementButtons(props) {
   function moveNorth() {
     props.setViewCenter([currentLong + 0.001, currentLat]);
     props.setScore(props.score - 1);
-
+    console.log(props.pathArray);
+    props.setPathArray([
+      [props.center[0], props.center[1]],
+      [props.viewCenter[0], props.viewCenter[1]],
+    ]);
     // props.setPathArray({
     //   coordinates: [props.viewCenter[0], props.viewCenter[1]],
     // });
