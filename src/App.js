@@ -6,7 +6,7 @@ import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
-import StatusButtons from "./components/Button.js";
+//import StatusButtons from "./components/Button.js";
 import Instructions from "./components/Instructions.js";
 
 function App() {
@@ -27,6 +27,9 @@ function App() {
 
   //declare variable to show instructions model
   const [viewInstructions, setViewInstructions] = useState("hidden");
+
+  //declaring variable to show modal
+  const [modalDisplay, setModalDisplay] = useState("hidden");
 
   //declares variable to store and set information in info box
   const [information, setInformation] = useState({
@@ -67,23 +70,24 @@ function App() {
           viewInstructions={viewInstructions}
           setViewInstructions={setViewInstructions}
         />
-        {/* <Modal
+        <Modal
           currentCenter={center}
           setInformation={setInformation}
           information={information}
-        /> */}
+          modalDisplay={modalDisplay}
+          setModalDisplay={setModalDisplay}
+        />
       </div>
 
       <div id="button-container">
         <RandomSpot
+          modalDisplay={modalDisplay}
+          setModalDisplay={setModalDisplay}
           setCenter={setCenter}
           setViewCenter={setViewCenter}
           setInformation={setInformation}
           setZoom={setZoom}
         />
-        <div className="buttonControl">
-          <StatusButtons></StatusButtons>
-        </div>
       </div>
     </>
   );

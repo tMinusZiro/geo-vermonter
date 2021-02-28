@@ -1,9 +1,21 @@
 import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
-
+import { useState } from "react";
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
+  const [buttonState, setButtonState] = useState(true);
+  console.log(buttonState);
+  function clickButton() {
+    setButtonState(false);
+    console.log(buttonState);
+  }
+  
+  //A function that toggles the modal to open
+function showModal(){
+  props.setModalDisplay("visible")
+}
+
   //returns a random number between a min and max - we are not using floor since we can accept decimal values
   function randomNum(min, max) {
     return Math.random() * (max - min + 1) + min;
@@ -65,6 +77,7 @@ function RandomSpot(props) {
     <div>
       <button
         onClick={(evt) => {
+          clickButton();
           generatePointInsideVT();
           // setCenter sends the zoom adjustment to App.js
           props.setZoom(18);
@@ -77,6 +90,13 @@ function RandomSpot(props) {
         }}
       >
         Start
+      </button>
+      <button name="Guess" disabled={buttonState} onClick = {showModal}>
+        Guess
+      </button>
+
+      <button name="Quit" disabled={buttonState}>
+        Quit
       </button>
     </div>
   );

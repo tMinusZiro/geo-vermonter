@@ -21,14 +21,14 @@ import { useState, useEffect } from "react";
 
 //functional component
 const Modal = (props) => {
-  const [modalOpen, setModalOpen] = useState(false); //modal display state
+ // const [modalOpen, setModalOpen] = useState(false); //modal display state
   const [submittedCounty, setSubmittedCounty] = useState(""); //state for when guess button is clicked
   const [selectedCounty, setSelectedCounty] = useState({}); //intermediate state for when user selects a county from dropdown but does not submit it yet
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
 
-  function showModal() {
-    setModalOpen(true);
-  }
+  // function showModal() {
+  //   setModalOpen(false);
+  // }
 
   //----------Form Event Handlers--------------//
 
@@ -101,7 +101,7 @@ const Modal = (props) => {
   }
 
   return (
-    <div id="modal-wrapper">
+    <div style = {{visibility:props.modalDisplay}} id="modal-wrapper">
       <div>
         <div className="modal">
           <h1>Choose The County</h1>
