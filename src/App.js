@@ -87,6 +87,7 @@ function App() {
           setViewCenter={setViewCenter}
           setInformation={setInformation}
           setZoom={setZoom}
+          currentCenter={center}
         />
       </div>
     </>

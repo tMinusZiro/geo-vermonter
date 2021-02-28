@@ -26,13 +26,10 @@ const Modal = (props) => {
   const [selectedCounty, setSelectedCounty] = useState({}); //intermediate state for when user selects a county from dropdown but does not submit it yet
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
 
+  // CLoses our modal when canceled is clicked on
   function closeModal() {
     props.setModalDisplay("hidden");
   }
-
-  // function showModal() {
-  //   setModalOpen(false);
-  // }
 
   //----------Form Event Handlers--------------//
 
@@ -103,7 +100,7 @@ const Modal = (props) => {
       alert(`Please Choose a County`);
     }
   }
-
+  
   return (
     <div style={{ visibility: props.modalDisplay }} id="modal-wrapper">
       <div>
