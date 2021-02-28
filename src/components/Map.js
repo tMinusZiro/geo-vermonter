@@ -18,19 +18,19 @@ function Map(props) {
     coords[0],
   ]);
 
-  const saniPolyLine = (array) => {
-    let counter = 0;
+  // const saniPolyLine = (array) => {
+  //   let counter = 0;
 
-    let newArray = [];
-    while (counter < array.length) {
-      newArray = [...newArray, array.slice(counter, counter + 2)];
-      counter += 2;
-    }
-    console.log(`new array: ${newArray}`);
-    // console.log(`path array: ${props.pathArray}`);
+  //   let newArray = [];
+  //   while (counter < array.length) {
+  //     newArray = [...newArray, array.slice(counter, counter + 2)];
+  //     counter += 2;
+  //   }
+  //   console.log(`new array: ${newArray}`);
+  //   // console.log(`path array: ${props.pathArray}`);
 
-    return newArray;
-  };
+  //   return newArray;
+  // };
 
   // let breadCrumbLine = saniPolyLine(props.pathArray.coordinates);
 

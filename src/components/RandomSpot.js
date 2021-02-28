@@ -10,11 +10,11 @@ function RandomSpot(props) {
     setButtonState(false);
     console.log(buttonState);
   }
-  
+
   //A function that toggles the modal to open
-function showModal(){
-  props.setModalDisplay("visible")
-}
+  function showModal() {
+    props.setModalDisplay("visible");
+  }
 
   //returns a random number between a min and max - we are not using floor since we can accept decimal values
   function randomNum(min, max) {
@@ -76,6 +76,7 @@ function showModal(){
   return (
     <div>
       <button
+        className="index-buttons"
         onClick={(evt) => {
           clickButton();
           generatePointInsideVT();
@@ -91,11 +92,16 @@ function showModal(){
       >
         Start
       </button>
-      <button name="Guess" disabled={buttonState} onClick = {showModal}>
+      <button
+        className="index-buttons"
+        name="Guess"
+        disabled={buttonState}
+        onClick={showModal}
+      >
         Guess
       </button>
 
-      <button name="Quit" disabled={buttonState}>
+      <button className="index-buttons" name="Quit" disabled={buttonState}>
         Quit
       </button>
     </div>

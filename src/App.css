@@ -78,7 +78,7 @@ image:hover {
   color: white;
 }
 
-#return:hover{
+#return:hover {
   background-color: #753a44c7;
 }
 
@@ -238,10 +238,16 @@ select:hover {
   /* background-color: rgb(64, 69, 39); */
   color: white;
   font-size: 25px;
-  border-radius: 5%;
+  border-radius: 5px;
   height: 6vh;
   width: 8vw;
   margin: 20px;
+}
+
+#button-container button:hover {
+  color: black;
+  background-color: rgba(127, 131, 106, 0.897);
+  cursor: pointer;
 }
 
 /*----------------- Instructions ------------------------*/
@@ -252,6 +258,14 @@ select:hover {
   border: 1px solid black;
   position: absolute;
   z-index: 2;
+}
+
+#instructions {
+  cursor: pointer;
+}
+
+#instructions:hover {
+  color: black;
 }
 
 .instruction-modal {
