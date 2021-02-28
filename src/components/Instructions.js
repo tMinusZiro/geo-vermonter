@@ -6,7 +6,10 @@ function Instructions(props) {
   }
 
   return (
-    <div style={{ visibility: props.viewInstructions }} id="instruction-wrapper">
+    <div
+      style={{ visibility: props.viewInstructions }}
+      id="instruction-wrapper"
+    >
       <div className="instruction-modal">
         <h1>How To Play</h1>
         <h3>Introduction</h3>
@@ -36,7 +39,9 @@ function Instructions(props) {
           return button will return you to the starting point, with no reduction
           to your score. An incorrect guess reduces your score by 10 points.
         </p>
-        <button onClick={closeInstructions}>Let's Play!</button>
+        <button onClick={closeInstructions}>
+          Let's Play!
+        </button>
       </div>
     </div>
   );
