@@ -2,8 +2,11 @@ import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
 import { useState } from "react";
+import Modal from "./Modal"
+
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
+  const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
   const [buttonState, setButtonState] = useState(true);
   console.log(buttonState);
   function clickButton() {
@@ -72,6 +75,32 @@ function RandomSpot(props) {
     props.setViewCenter([newLatitude, newLongitude]);
   }
 
+  //-----Fetch--------//
+  // fetches current location data, that will populate info box using a reverse address lookup API
+  console.log (props.currentCenter)
+  const fetchData = async () => {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
+    )
+      .then((res) => res.json())
+      .then((jsonObj) => {
+        //calling the countData change function and assigning the state to the current location json object containing useful location info
+        setCountyData(jsonObj);
+        
+      });
+  };
+  //console.log (countyData.address.county)
+  function leaveGame() {
+    props.setInformation({
+      latitude: countyData.lat,
+      longitude: countyData.lon,
+      county: countyData.address.county,
+      town: countyData.address.village,
+    });
+   
+  }
+
+
   //a single button with onClick listener that triggers generatePointInsideVT, adjusts zoom of map, sets information in the info bar
   return (
     <div>
@@ -101,7 +130,7 @@ function RandomSpot(props) {
         Guess
       </button>
 
-      <button className="index-buttons" name="Quit" disabled={buttonState}>
+      <button className="index-buttons" name="Quit" disabled={buttonState} onClick={() => {fetchData(); let timpOut = setTimeout(leaveGame, 2000)}}>
         Quit
       </button>
     </div>
