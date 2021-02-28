@@ -7,6 +7,7 @@ import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
 //import StatusButtons from "./components/Button.js";
+import Instructions from "./components/Instructions.js";
 
 function App() {
   //declares variable to set and store the location of the marker[latitude,longitude]
@@ -21,6 +22,15 @@ function App() {
   //declare variable to store and set zoom
   const [zoom, setZoom] = useState(8);
 
+  //declares an array to keep track of users movement from the start point (randomSpot)
+  const [pathArray, setPathArray] = useState([[center[0], center[1]], []]);
+
+  //declare variable to show instructions model
+  const [viewInstructions, setViewInstructions] = useState("hidden");
+
+  //declaring variable to show modal
+  const [modalDisplay, setModalDisplay] = useState("hidden");
+
   //declares variable to store and set information in info box
   const [information, setInformation] = useState({
     latitude: "???",
@@ -29,13 +39,9 @@ function App() {
     town: "???",
   });
 
-  console.log(
-    `inside app.js view center is being accessed and is ${viewCenter}`
-  );
-
   return (
     <>
-      <Header score={score} />
+      <Header score={score} setViewInstructions={setViewInstructions} />
       <div id="map-container">
         <div className="board-containers">
           <MovementButtons
@@ -45,25 +51,44 @@ function App() {
             setViewCenter={setViewCenter}
             score={score}
             setScore={setScore}
+            pathArray={pathArray}
+            setPathArray={setPathArray}
           />
         </div>
         <div className="board-containers">
-          <Map center={center} viewCenter={viewCenter} zoom={zoom} />
-        </div>
-        <div className="buttonControl">
-          {/* <StatusButtons></StatusButtons> */}
+          <Map
+            center={center}
+            viewCenter={viewCenter}
+            zoom={zoom}
+            pathArray={pathArray}
+          />
         </div>
         <div className="board-containers">
           <Info information={information} />
         </div>
-        <Modal />
+        <Instructions
+          viewInstructions={viewInstructions}
+          setViewInstructions={setViewInstructions}
+        />
+        <Modal
+          currentCenter={center}
+          setInformation={setInformation}
+          information={information}
+          modalDisplay={modalDisplay}
+          setModalDisplay={setModalDisplay}
+        />
       </div>
-      {/* NOTE: ultimately this information might need to be passed into the Button component since "start" button will trigger these things to happen */}
-      <RandomSpot
-        setCenter={setCenter}
-        setInformation={setInformation}
-        setZoom={setZoom}
-      />
+
+      <div id="button-container">
+        <RandomSpot
+          modalDisplay={modalDisplay}
+          setModalDisplay={setModalDisplay}
+          setCenter={setCenter}
+          setViewCenter={setViewCenter}
+          setInformation={setInformation}
+          setZoom={setZoom}
+        />
+      </div>
     </>
   );
 }

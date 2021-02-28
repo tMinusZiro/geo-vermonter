@@ -1,10 +1,21 @@
 import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
-//import Button from 'Button'
-
+import { useState } from "react";
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
+  const [buttonState, setButtonState] = useState(true);
+  console.log(buttonState);
+  function clickButton() {
+    setButtonState(false);
+    console.log(buttonState);
+  }
+  
+  //A function that toggles the modal to open
+function showModal(){
+  props.setModalDisplay("visible")
+}
+
   //returns a random number between a min and max - we are not using floor since we can accept decimal values
   function randomNum(min, max) {
     return Math.random() * (max - min + 1) + min;
@@ -55,24 +66,38 @@ function RandomSpot(props) {
       insideVT = checkPointWithinBorder([newLatitude, newLongitude]);
     }
 
-    //once a random point is insideVT, setCenter sends the point to App.js
+    //once a random point is insideVT, setCenter sends the marker to App.js
     props.setCenter([newLatitude, newLongitude]);
+    // set viewCenter sends the view center to App.js
+    props.setViewCenter([newLatitude, newLongitude]);
   }
 
-  //a single button with onClick listener that triggers generatePointInsideVT, sets information in the info bar
+  //a single button with onClick listener that triggers generatePointInsideVT, adjusts zoom of map, sets information in the info bar
   return (
     <div>
       <button
-      onClick={(evt) => {
-        generatePointInsideVT();
-        props.setInformation({
-          latitude: "resetting",
-          longitude: "resetting",
-          county: "resetting",
-          town: "resetting",
-        });
-        props.setZoom(18);
-      }}/>
+        onClick={(evt) => {
+          clickButton();
+          generatePointInsideVT();
+          // setCenter sends the zoom adjustment to App.js
+          props.setZoom(18);
+          props.setInformation({
+            latitude: "???",
+            longitude: "???",
+            county: "???",
+            town: "???",
+          });
+        }}
+      >
+        Start
+      </button>
+      <button name="Guess" disabled={buttonState} onClick = {showModal}>
+        Guess
+      </button>
+
+      <button name="Quit" disabled={buttonState}>
+        Quit
+      </button>
     </div>
   );
 }

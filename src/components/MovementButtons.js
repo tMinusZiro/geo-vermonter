@@ -1,5 +1,5 @@
 import arrow from "./images/arrow.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function MovementButtons(props) {
   //viewCenter is passed as a prop from App.js, this is the point where the map view is centered
@@ -9,76 +9,103 @@ function MovementButtons(props) {
   //the second part is latitude (east & west)
   let currentLat = props.viewCenter[1];
 
-  console.log(props.score);
+  function updateBreadCrumb() {
+    const { coordinates } = props.pathArray;
+    let tempArr = [...coordinates];
+    tempArr.push([props.viewCenter[0], props.viewCenter[1]]);
+    props.setPathArray({
+      coordinates: tempArr,
+    });
+  }
 
-  //called on when the North button is clicked - moveNorth changes the current longitutde by .001 and decreases score by 1
+  //called on when the North button is clicked - moveNorth changes the current longitude by .001 and decreases score by 1
   function moveNorth() {
-    console.log("moving north");
-    console.log("adjusting the first number [0] by increasing .01");
     props.setViewCenter([currentLong + 0.001, currentLat]);
     props.setScore(props.score - 1);
+
+    // props.setPathArray({
+    //   coordinates: [props.viewCenter[0], props.viewCenter[1]],
+    // });
+    console.log(`after moving north path array is ${props.pathArray}`);
   }
 
-  //called on when the East button is clicked - moveEast changes the current longitutde by .001 and decreases score by 1
+  //called on when the East button is clicked - moveEast changes the current longitude by .001 and decreases score by 1
   function moveEast() {
-    console.log("moving east");
-    console.log("adjusting the second number [1] by increasing .01");
     props.setViewCenter([currentLong, currentLat + 0.001]);
     props.setScore(props.score - 1);
+
+    // props.setPathArray({ coordinates: [props.viewCenter] });
+    console.log(`after moving east path array is ${props.pathArray}`);
   }
 
-  //called on when the South button is clicked - moveSouth changes the current longitutde by .001 and decreases score by 1
+  //called on when the South button is clicked - moveSouth changes the current longitude by .001 and decreases score by 1
   function moveSouth() {
-    console.log("moving south");
-    console.log("adjusting the first number [0] by decreasing .01");
     props.setViewCenter([currentLong - 0.001, currentLat]);
     props.setScore(props.score - 1);
+
+    // props.setPathArray({ coordinates: [props.viewCenter] });
+    console.log(`after moving south path array is ${props.pathArray}`);
   }
 
-  //called on when the West button is clicked - moveWest changes the current longitutde by .001 and decreases score by 1
+  //called on when the West button is clicked - moveWest changes the current longitude by .001 and decreases score by 1
   function moveWest() {
-    console.log("moving west");
-    console.log("adjusting the second number [1] by decreasing .01");
     props.setViewCenter([currentLong, currentLat - 0.001]);
     props.setScore(props.score - 1);
+
+    // props.setPathArray({ coordinates: [props.viewCenter] });
+    console.log(`after moving west path array is ${props.pathArray}`);
   }
 
+  //called on when the return button is clicked - return recenters the map on the game's center with no change to score
   function moveReturn() {
-    console.log("returning");
+    props.setViewCenter([props.center[0], props.center[1]]);
+
+    // props.setPathArray({ coordinates: [props.viewCenter] });
+    console.log(`after moving center path array is ${props.pathArray}`);
   }
 
   return (
     <div id="navigation-container">
-    <h2 id="navigation">Navigation</h2>
-    <div id="movement-buttons">
-      <div id="movement-buttons-top">
-        <img
-          src={arrow}
-          id="north"
-          className="move-button"
-          onClick={moveNorth}
-        />
+      <h2 id="navigation">Navigation</h2>
+      <div id="movement-buttons">
+        <div id="movement-buttons-top">
+          <img
+            src={arrow}
+            id="north"
+            className="move-button"
+            alt="up-arrow"
+            onClick={moveNorth}
+          />
+        </div>
+        <div id="movement-buttons-center">
+          <img
+            src={arrow}
+            id="west"
+            className="move-button"
+            alt="left-arrow"
+            onClick={moveWest}
+          />
+          <div id="return" className="move-button" onClick={moveReturn}>
+            Return
+          </div>
+          <img
+            src={arrow}
+            id="east"
+            className="move-button"
+            alt="right-arrow"
+            onClick={moveEast}
+          />
+        </div>
+        <div id="movement-buttons-bottom">
+          <img
+            src={arrow}
+            id="south"
+            className="move-button"
+            alt="down-arrow"
+            onClick={moveSouth}
+          />
+        </div>
       </div>
-      <div id="movement-buttons-center">
-        <img src={arrow} id="west" className="move-button" onClick={moveWest} />
-        <div id="return" className="move-button" onClick={moveReturn}></div>
-        <img src={arrow} id="east" className="move-button" onClick={moveEast} />
-      </div>
-      <div id="movement-buttons-bottom">
-        <img
-          src={arrow}
-          id="south"
-          className="move-button"
-          onClick={moveSouth}
-        />
-      </div>
-      {/* <p>
-        Once the game has started use these buttons to navigate around the map,
-        North, South, East or West. Each time you move, your score will go down
-        by 1 point. The center button will return you to the starting point,
-        with no reduction to your score.{" "}
-      </p> */}
-    </div>
     </div>
   );
 }
