@@ -1,6 +1,7 @@
 import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
+//import Button from 'Button'
 
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
@@ -62,19 +63,16 @@ function RandomSpot(props) {
   return (
     <div>
       <button
-        onClick={(evt) => {
-          generatePointInsideVT();
-          props.setInformation({
-            latitude: "resetting",
-            longitude: "resetting",
-            county: "resetting",
-            town: "resetting",
-          });
-          props.setZoom(18)
-        }}
-      >
-        Random Spot
-      </button>
+      onClick={(evt) => {
+        generatePointInsideVT();
+        props.setInformation({
+          latitude: "resetting",
+          longitude: "resetting",
+          county: "resetting",
+          town: "resetting",
+        });
+        props.setZoom(18);
+      }}/>
     </div>
   );
 }

@@ -1,23 +1,25 @@
 import react from "react";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
+import Buttons from "./Buttons";
 
-function StatusButtons(props) {
-  const [disabledButton, setDisabledButton] = useState(false)  
-  useEffect(() => setDisabledButton(true), [true])
+function App() {
+  const [buttonState, SetButtonState] = useState(false);
+  //const [DisabledButton, setDisabledButton] = useState(false);
+  //useEffect(() => setDisabledButton(true), [true]);
+
+  function clickButton() {
+    SetButtonState(true);
+  }
   return (
-    <div>
-      <button name="start" onclick= {setDisabledButton}>
-        start
-      </button>
-
-      <button name="Guess" disabled onclick="event( )">
+    <div id="buttonList">
+      <button name="Guess" disabled onclick="event(disabled = false )">
         Guess
       </button>
-
-      <button name="Quit" disabled onclick="event( )">
+      <button name="Quit" disabled onclick="event(disabled = false )">
         quit
       </button>
     </div>
   );
 }
-export default StatusButtons;
+
+export default App;

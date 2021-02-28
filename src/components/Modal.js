@@ -28,7 +28,7 @@ const Modal = (props) => {
   const [countyData, setCountyData] = useState(null);
 
   function showModal() {
-    setModalOpen(true);
+    setModalOpen(false);
   }
 
   //How to use current location of user to determine if they guessed right
@@ -50,9 +50,9 @@ const Modal = (props) => {
       county: selected.county,
     });
 
-    console.log(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
-    );
+    // console.log(
+    //   `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
+    // );
   }
 
   function handleChange(e) {
