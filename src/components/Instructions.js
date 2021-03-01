@@ -1,6 +1,5 @@
 // instruction component that generates modal to show how to play instructions
 function Instructions(props) {
-
   //toggles to visibility of the instruction model to visible
   function closeInstructions() {
     props.setViewInstructions("hidden");
@@ -40,9 +39,7 @@ function Instructions(props) {
           return button will return you to the starting point, with no reduction
           to your score. An incorrect guess reduces your score by 10 points.
         </p>
-        <button onClick={closeInstructions}>
-          Let's Play!
-        </button>
+        <button onClick={closeInstructions}>OK!</button>
       </div>
     </div>
   );

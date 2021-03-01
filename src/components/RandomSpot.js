@@ -8,10 +8,20 @@ import Modal from "./Modal";
 function RandomSpot(props) {
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
   const [buttonState, setButtonState] = useState(true);
+  const [startState, setStartState] = useState(false);
 
-  //sets button state to disabled when start is clicked
+  let deactivateStyle;
+  //sets guess and quit button to disabled when start is clicked
   function clickButton() {
     setButtonState(false);
+    //deactivates the start button after it is clicked
+    if (buttonState === true) {
+      setStartState(true);
+      deactivateStyle = {
+        color: "rgba(127, 131, 106, 0.897)",
+        pointer: "none",
+      };
+    }
   }
 
   //A function that toggles the modal to open
@@ -105,6 +115,8 @@ function RandomSpot(props) {
     <div>
       <button
         className="index-buttons"
+        disabled={startState}
+        style={deactivateStyle}
         onClick={(evt) => {
           clickButton();
           generatePointInsideVT();
@@ -136,11 +148,13 @@ function RandomSpot(props) {
         disabled={buttonState}
         onClick={() => {
           leaveGame();
-
+          //sets a delay after quitting to allow user to see info box populate
           let timeout = setTimeout(function reset() {
-            alert(`Do you want to play again?`);
+            //a little quitting pun to entice the user to play again
+            alert("Why did the Donkey quit his job?\n\nHee Hawed enough!");
+            //refreshes page to restart the game after player quits
             window.location.reload();
-          }, 2000);
+          }, 1200);
         }}
       >
         Quit

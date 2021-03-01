@@ -26,9 +26,14 @@ const Modal = (props) => {
   const [selectedCounty, setSelectedCounty] = useState({}); //intermediate state for when user selects a county from dropdown but does not submit it yet
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
 
-  // CLoses our modal when canceled is clicked on
+  // Closes our modal when canceled is clicked on
   function closeModal() {
     props.setModalDisplay("hidden");
+  }
+
+  //function that toggles the player name modal if user guesses correctly
+  function showPlayerNameModal() {
+    props.setPlayerNameDisplay("visible");
   }
 
   //----------Form Event Handlers--------------//
@@ -89,19 +94,25 @@ const Modal = (props) => {
         alert(`You Guessed Incorrectly`);
         props.setScore(props.score - 10);
       } else {
-        alert(`You Guessed Correctly`);
         props.setInformation({
           latitude: countyData.lat,
           longitude: countyData.lon,
           county: countyData.address.county,
           town: countyData.address.village,
         });
+        //updates high score state using the current score
+        props.setHighScore(props.score);
+        //stores high score in local storage
+        localStorage.setItem("highScore", props.highScore);
+        //toggles input name modal to pair with high score
+        showPlayerNameModal();
       }
     } else {
       alert(`Please Choose a County`);
     }
   }
-  
+  const retrieveHighScore = localStorage.getItem("highScore");
+  console.log(`Local Stored HighScore: ${retrieveHighScore}`);
   return (
     <div style={{ visibility: props.modalDisplay }} id="modal-wrapper">
       <div>

@@ -58,7 +58,7 @@ li {
 
 #navigation {
   text-align: center;
-  background-color: black;
+  background-color: #ce7845;
   color: white;
 }
 
@@ -135,7 +135,7 @@ image:hover {
 }
 
 #info {
-  background-color: black;
+  background-color: #ce7845;
   color: white;
 }
 
@@ -144,7 +144,6 @@ image:hover {
 #modal-wrapper {
   display: flex;
   justify-content: center;
-  border: 1px solid black;
   position: absolute;
   z-index: 2;
 }
@@ -214,6 +213,55 @@ select:hover {
   color: black;
 }
 
+/*----------------Player Name Modal----------------*/
+#playerName-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+}
+
+#player-name-modal {
+  width: 30vw;
+  height: 30vh;
+  background-color: #c9b1a5ef;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  z-index: 2;
+}
+
+#player-name-modal > h1 {
+  padding-bottom: 0;
+}
+#player-name-modal > h2 {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#name-input {
+  border-radius: 1px;
+  height: 2.5vh;
+}
+#name-input:hover {
+  border: 1px solid #5c2932;
+}
+
+#play-again {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  width: 8vw;
+  height: 3.3vh;
+  background-color: #5c2932;
+  border-style: none;
+  color: white;
+}
+#play-again:hover {
+  background-color: #753a44c7;
+  cursor: pointer;
+  color: black;
+}
 /*----------------- Game Play Buttons ------------------------*/
 #button-container {
   display: flex;

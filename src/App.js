@@ -7,29 +7,38 @@ import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
 import Instructions from "./components/Instructions.js";
+import PlayerName from "./components/PlayerName";
 
 function App() {
+  //---------Location State------------//
   //declares variable to set and store the location of the marker[latitude,longitude]
   const [center, setCenter] = useState([43.88, -72.7317]);
-
   //declares variable to set and store the location of the center of the view box
   const [viewCenter, setViewCenter] = useState([43.88, -72.7317]);
-
-  //declares variable to store and set score
-  const [score, setScore] = useState("100");
-
-  //declare variable to store and set zoom
-  const [zoom, setZoom] = useState(8);
-
   //declares an array to keep track of users movement from the start point (randomSpot)
   const [pathArray, setPathArray] = useState({ coordinates: [[]] });
 
-  //declare variable to show instructions model
+  //-----------Nav Bar State--------//
+  //declares variable to store and set score
+  const [score, setScore] = useState("100");
+  //declare variable to show instructions modal
   const [viewInstructions, setViewInstructions] = useState("hidden");
+  //High Score state that will save session scores for user
+  const [highScore, setHighScore] = useState();
 
+  //---------Zoom State---------//
+  //declare variable to store and set zoom
+  const [zoom, setZoom] = useState(8);
+
+  //----------Modal State-------//
   //declaring variable to show modal
   const [modalDisplay, setModalDisplay] = useState("hidden");
 
+  //-----Name Modal State------//
+  //collects users name to associate high score with
+  const [playerNameDisplay, setPlayerNameDisplay] = useState("hidden");
+
+  //----------Info Box State--------//
   //declares variable to store and set information in info box
   const [information, setInformation] = useState({
     latitude: "???",
@@ -37,6 +46,15 @@ function App() {
     county: "???",
     town: "???",
   });
+
+  //We have organized our components inside div containers in the following manner:
+  //=> Header: contains the top of page color bar and Title  of application
+  //=> MovementButtons: contains the navigation buttons that move the user around the map once started - left side of map
+  //=> Map: contains the tiled leaflet map library
+  //=> Info: contains the info box on the right of map
+  //=> Instructions: contains a pop-up modal that provides useful information about how to play the game
+  //=> Modal: contains a pop-up modal when user presses Guess button that provides a choice of all vt counties for user to select from a drop-down form
+  //=> Random Spot: contains the three main buttons for the game and the code that generates a random location
 
   return (
     <>
@@ -77,6 +95,14 @@ function App() {
           setModalDisplay={setModalDisplay}
           score={score}
           setScore={setScore}
+          setPlayerNameDisplay={setPlayerNameDisplay}
+          playerNameDisplay={playerNameDisplay}
+          highScore={highScore}
+          setHighScore={setHighScore}
+        />
+        <PlayerName
+          setPlayerNameDisplay={setPlayerNameDisplay}
+          playerNameDisplay={playerNameDisplay}
         />
       </div>
 
@@ -90,6 +116,10 @@ function App() {
           setZoom={setZoom}
           currentCenter={center}
           setPathArray={setPathArray}
+          setPlayerNameDisplay={setPlayerNameDisplay}
+          playerNameDisplay={playerNameDisplay}
+          highScore={highScore}
+          setHighScore={setHighScore}
         />
       </div>
     </>
