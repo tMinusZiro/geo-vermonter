@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function NavBar(props) {
   //toggles to visibility of the instruction model to visible
   function showInstructions() {

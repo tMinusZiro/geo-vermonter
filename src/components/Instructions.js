@@ -1,5 +1,6 @@
-//instruction component that generates modal to show how to play instructions
+// instruction component that generates modal to show how to play instructions
 function Instructions(props) {
+
   //toggles to visibility of the instruction model to visible
   function closeInstructions() {
     props.setViewInstructions("hidden");

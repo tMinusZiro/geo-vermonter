@@ -6,7 +6,6 @@ import MovementButtons from "./components/MovementButtons";
 import Info from "./components/Info";
 import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
-//import StatusButtons from "./components/Button.js";
 import Instructions from "./components/Instructions.js";
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
   const [zoom, setZoom] = useState(8);
 
   //declares an array to keep track of users movement from the start point (randomSpot)
-  const [pathArray, setPathArray] = useState([[center[0], center[1]], []]);
+  const [pathArray, setPathArray] = useState({ coordinates: [[]] });
 
   //declare variable to show instructions model
   const [viewInstructions, setViewInstructions] = useState("hidden");
@@ -76,6 +75,8 @@ function App() {
           information={information}
           modalDisplay={modalDisplay}
           setModalDisplay={setModalDisplay}
+          score={score}
+          setScore={setScore}
         />
       </div>
 
@@ -88,6 +89,7 @@ function App() {
           setInformation={setInformation}
           setZoom={setZoom}
           currentCenter={center}
+          setPathArray={setPathArray}
         />
       </div>
     </>

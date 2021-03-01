@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 //---------steps for creating modal display:------------- //
 //button is clicked
@@ -87,6 +87,7 @@ const Modal = (props) => {
         countyData.address.county.trim().replace(" County", "").toLowerCase()
       ) {
         alert(`You Guessed Incorrectly`);
+        props.setScore(props.score - 10);
       } else {
         alert(`You Guessed Correctly`);
         props.setInformation({

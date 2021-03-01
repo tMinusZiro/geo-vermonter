@@ -1,5 +1,4 @@
 import arrow from "./images/arrow.svg";
-import { useState, useEffect } from "react";
 
 function MovementButtons(props) {
   //viewCenter is passed as a prop from App.js, this is the point where the map view is centered
@@ -9,59 +8,44 @@ function MovementButtons(props) {
   //the second part is latitude (east & west)
   let currentLat = props.viewCenter[1];
 
-  function updateBreadCrumbs(newLat, newLong) {
-    const { coordinates } = props.pathArray;
-    let tempArr = [...coordinates];
-    tempArr.push([newLat, newLong]);
-    props.setPathArray({
-      coordinates: tempArr,
-    });
+  // we cannot push an array in state directly, create a temporary array which is used to update path array
+  function updateArray(newLong, newLat) {
+    let tempArr = props.pathArray.coordinates[0];
+    tempArr.push([newLong, newLat]);
+    props.setPathArray({ coordinates: [tempArr] });
   }
 
   //called on when the North button is clicked - moveNorth changes the current longitude by .001 and decreases score by 1
   function moveNorth() {
     props.setViewCenter([currentLong + 0.001, currentLat]);
     props.setScore(props.score - 1);
-    updateBreadCrumbs([currentLong + 0.001, currentLat]);
-    // props.setPathArray({
-    //   coordinates: [props.viewCenter[0], props.viewCenter[1]],
-    // });
-    console.log(`after moving north path array is ${props.pathArray}`);
+    updateArray(currentLong + 0.001, currentLat);
   }
 
   //called on when the East button is clicked - moveEast changes the current longitude by .001 and decreases score by 1
   function moveEast() {
     props.setViewCenter([currentLong, currentLat + 0.001]);
     props.setScore(props.score - 1);
-
-    // props.setPathArray({ coordinates: [props.viewCenter] });
-    console.log(`after moving east path array is ${props.pathArray}`);
+    updateArray(currentLong, currentLat + 0.001);
   }
 
   //called on when the South button is clicked - moveSouth changes the current longitude by .001 and decreases score by 1
   function moveSouth() {
     props.setViewCenter([currentLong - 0.001, currentLat]);
-    props.setScore(props.score - 1);
-
-    // props.setPathArray({ coordinates: [props.viewCenter] });
-    console.log(`after moving south path array is ${props.pathArray}`);
+    updateArray(currentLong - 0.001, currentLat);
   }
 
   //called on when the West button is clicked - moveWest changes the current longitude by .001 and decreases score by 1
   function moveWest() {
     props.setViewCenter([currentLong, currentLat - 0.001]);
     props.setScore(props.score - 1);
-
-    // props.setPathArray({ coordinates: [props.viewCenter] });
-    console.log(`after moving west path array is ${props.pathArray}`);
+    updateArray(currentLong, currentLat - 0.001);
   }
 
   //called on when the return button is clicked - return recenters the map on the game's center with no change to score
   function moveReturn() {
     props.setViewCenter([props.center[0], props.center[1]]);
-
-    // props.setPathArray({ coordinates: [props.viewCenter] });
-    console.log(`after moving center path array is ${props.pathArray}`);
+    updateArray(props.center[0], props.center[1]);
   }
 
   return (

@@ -8,10 +8,10 @@ import Modal from "./Modal";
 function RandomSpot(props) {
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
   const [buttonState, setButtonState] = useState(true);
-  console.log(buttonState);
+
+  //sets button state to disabled when start is clicked
   function clickButton() {
     setButtonState(false);
-    console.log(buttonState);
   }
 
   //A function that toggles the modal to open
@@ -73,6 +73,8 @@ function RandomSpot(props) {
     props.setCenter([newLatitude, newLongitude]);
     // set viewCenter sends the view center to App.js
     props.setViewCenter([newLatitude, newLongitude]);
+    // sets path array to start with the first coordinate as the center
+    props.setPathArray({ coordinates: [[[newLatitude, newLongitude]]] });
   }
 
   //-----Fetch--------//

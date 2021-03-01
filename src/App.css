@@ -12,7 +12,7 @@ body {
   position: relative;
 }
 
-/*----------Individual Board Containers---------*/
+/*---------- Individual Board Containers ---------*/
 .board-containers {
   width: 33vw;
   z-index: 0;
@@ -127,7 +127,7 @@ image:hover {
   transform: rotate(180deg);
 }
 
-/*--------------------Info Box------------------*/
+/*-------------------- Info Box ------------------*/
 #info-wrapper {
   width: 20vw;
   height: 50vh;
@@ -139,7 +139,7 @@ image:hover {
   color: white;
 }
 
-/*-----------------Modal ------------------------*/
+/*----------------- Modal ------------------------*/
 
 #modal-wrapper {
   display: flex;
@@ -159,12 +159,6 @@ image:hover {
   font-size: 1em;
   z-index: 2;
 }
-
-/* #select-wrapper{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-} */
 
 select {
   -webkit-appearance: none;
@@ -192,13 +186,6 @@ select:hover {
   background-color: #753a44c7;
   color: black;
 }
-
-/* select::after {
-  content: "▼";
-  font-size: 1rem;
-
-  position: absolute;
-} */
 
 .modal-cancel {
   width: 10vw;
@@ -235,7 +222,7 @@ select:hover {
 }
 
 #button-container button {
-  /* background-color: rgb(64, 69, 39); */
+  background-color: rgb(64, 69, 39);
   color: white;
   font-size: 25px;
   border-radius: 5px;
@@ -270,9 +257,8 @@ select:hover {
 
 .instruction-modal {
   width: 40vw;
-  height: 60vh;
+  height: 100%;
   background-color: #c9b1a5ef;
-  /* color: white; */
   border-radius: 5px;
   text-align: center;
   font-size: 1em;
@@ -289,4 +275,14 @@ select:hover {
 
 .instruction-modal button {
   margin: 30px;
+  width: 10vw;
+  height: 3.2vh;
+  background-color: #5c2932;
+  color: white;
+  border-radius: 5px;
+}
+
+.instruction-modal button:hover {
+  background-color: #753a44c7;
+  color: black;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 // info component contains information panel with include lat/long/county and town
 const Info = (props) => {
