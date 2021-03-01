@@ -290,7 +290,7 @@ select:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid black;
+
   position: absolute;
   z-index: 2;
 }
@@ -332,5 +332,29 @@ select:hover {
 
 .instruction-modal button:hover {
   background-color: #753a44c7;
+  color: black;
+  cursor: pointer;
+}
+
+/*----------High Score Modal---------------*/
+#highScore-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+}
+#high-score-modal {
+  width: 30vw;
+  height: 30vh;
+  background-color: #c9b1a5ef;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  z-index: 2;
+}
+
+#high-scores:hover {
+  cursor: pointer;
   color: black;
 }

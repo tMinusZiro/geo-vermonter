@@ -8,6 +8,7 @@ import Modal from "./components/Modal";
 import RandomSpot from "./components/RandomSpot.js";
 import Instructions from "./components/Instructions.js";
 import PlayerName from "./components/PlayerName";
+import HighScore from "./components/HighScore";
 
 function App() {
   //---------Location State------------//
@@ -24,7 +25,9 @@ function App() {
   //declare variable to show instructions modal
   const [viewInstructions, setViewInstructions] = useState("hidden");
   //High Score state that will save session scores for user
-  const [highScore, setHighScore] = useState();
+  const [highScore, setHighScore] = useState("");
+  //declare state to view highScore modal
+  const [viewHighScore, setViewHighScore] = useState("hidden");
 
   //---------Zoom State---------//
   //declare variable to store and set zoom
@@ -86,6 +89,10 @@ function App() {
         <Instructions
           viewInstructions={viewInstructions}
           setViewInstructions={setViewInstructions}
+        />
+        <HighScore
+          viewHighScore={viewHighScore}
+          setViewHighScore={setViewHighScore}
         />
         <Modal
           currentCenter={center}
