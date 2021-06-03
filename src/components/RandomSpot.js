@@ -1,12 +1,12 @@
 import borderData from "../data/border";
 import leafletPip from "leaflet-pip";
 import L from "leaflet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Modal";
 
 //select a random number for latitude and longitutde within the bounder of VT
 function RandomSpot(props) {
-  const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
+  const [countyData, setCountyData] = useState(); //state for current location of the user in the game
   const [buttonState, setButtonState] = useState(true);
   const [startState, setStartState] = useState(false);
 
@@ -48,7 +48,7 @@ function RandomSpot(props) {
 
   //check if a given point is within the boundary of VT and returns a boolean
   function checkPointWithinBorder(point) {
-    //sets the VT borderData into a geoJASON object to be passed into leaflet pip
+    //sets the VT borderData into a geoJSON object to be passed into leaflet pip
     let stateLayer = L.geoJSON(borderData);
 
     //calls leafletPip.pointInLayer method - returns an array of the polygons included in the stateLayer that contain the provided point
@@ -88,10 +88,10 @@ function RandomSpot(props) {
   }
 
   //-----Fetch--------//
-  // fetches current location data, that will populate info box using a reverse address lookup API
-  console.log(props.currentCenter);
-  const fetchData = async () => {
-    const response = await fetch(
+
+  //used a useEffect hook that will fetch current county every time the current center coordinate changes
+  useEffect(() => {
+    fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${props.currentCenter[0]}&lon=${props.currentCenter[1]}`
     )
       .then((res) => res.json())
@@ -99,8 +99,10 @@ function RandomSpot(props) {
         //calling the countData change function and assigning the state to the current location json object containing useful location info
         setCountyData(jsonObj);
       });
-  };
-  //console.log (countyData.address.county)
+  }, [props.currentCenter]);
+
+  console.log("Outside of fetch, COUNTY =");
+  console.log(countyData ? countyData : "Loading...");
   function leaveGame() {
     props.setInformation({
       latitude: countyData.lat,
@@ -128,7 +130,7 @@ function RandomSpot(props) {
             county: "???",
             town: "???",
           });
-          fetchData();
+          // fetchData();
         }}
       >
         Start
@@ -147,6 +149,7 @@ function RandomSpot(props) {
         name="Quit"
         disabled={buttonState}
         onClick={() => {
+          console.log(countyData);
           leaveGame();
           //sets a delay after quitting to allow user to see info box populate
           let timeout = setTimeout(function reset() {
