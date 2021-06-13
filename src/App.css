@@ -354,6 +354,15 @@ select:hover {
   z-index: 2;
 }
 
+.high-score-modal button {
+  margin: 30px;
+  width: 10vw;
+  height: 3.2vh;
+  background-color: #5c2932;
+  color: white;
+  border-radius: 5px;
+}
+
 #high-scores:hover {
   cursor: pointer;
   color: black;

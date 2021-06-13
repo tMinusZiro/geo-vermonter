@@ -102,8 +102,6 @@ const Modal = (props) => {
         });
         //updates high score state using the current score
         props.setHighScore(props.score);
-        //stores high score in local storage
-        localStorage.setItem("highScore", props.highScore);
         //toggles input name modal to pair with high score
         showPlayerNameModal();
       }
@@ -111,8 +109,7 @@ const Modal = (props) => {
       alert(`Please Choose a County`);
     }
   }
-  const retrieveHighScore = localStorage.getItem("highScore");
-  console.log(`Local Stored HighScore: ${retrieveHighScore}`);
+
   return (
     <div style={{ visibility: props.modalDisplay }} id="modal-wrapper">
       <div>

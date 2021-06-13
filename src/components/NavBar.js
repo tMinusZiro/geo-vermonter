@@ -5,6 +5,10 @@ function NavBar(props) {
   function showInstructions() {
     props.setViewInstructions("visible");
   }
+  //toggles to visibility of the high score modal to visible
+  function showHighScore() {
+    props.setViewHighScore("visible");
+  }
 
   //nav bar containing about, high scores, and score board
   return (
@@ -12,7 +16,9 @@ function NavBar(props) {
       <li id="instructions" onClick={showInstructions}>
         Instructions
       </li>
-      <li id="high-scores">High Scores</li>
+      <li id="high-scores" onClick={showHighScore}>
+        High Scores
+      </li>
       <li id="score">
         Score: <b>{props.score}</b>
       </li>

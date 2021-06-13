@@ -26,6 +26,7 @@ function App() {
   const [viewInstructions, setViewInstructions] = useState("hidden");
   //High Score state that will save session scores for user
   const [highScore, setHighScore] = useState("");
+
   //declare state to view highScore modal
   const [viewHighScore, setViewHighScore] = useState("hidden");
 
@@ -61,7 +62,12 @@ function App() {
 
   return (
     <>
-      <Header score={score} setViewInstructions={setViewInstructions} />
+      <Header
+        score={score}
+        setViewInstructions={setViewInstructions}
+        setViewHighScore={setViewHighScore}
+        viewHighScore={setViewHighScore}
+      />
       <div id="map-container">
         <div className="board-containers">
           <MovementButtons
@@ -93,6 +99,7 @@ function App() {
         <HighScore
           viewHighScore={viewHighScore}
           setViewHighScore={setViewHighScore}
+          score={score}
         />
         <Modal
           currentCenter={center}
@@ -110,6 +117,8 @@ function App() {
         <PlayerName
           setPlayerNameDisplay={setPlayerNameDisplay}
           playerNameDisplay={playerNameDisplay}
+          score={score}
+          setScore={setScore}
         />
       </div>
 
