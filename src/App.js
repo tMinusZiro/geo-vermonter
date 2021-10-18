@@ -51,6 +51,13 @@ function App() {
     town: "???",
   });
 
+  //---------Game Record State-------//
+  const [moves, setMoves] = useState();
+  console.log('MOVES ARRAY')
+  console.log(moves ? moves : 'Loading')
+  
+
+
   //We have organized our components inside div containers in the following manner:
   //=> Header: contains the top of page color bar and Title  of application
   //=> MovementButtons: contains the navigation buttons that move the user around the map once started - left side of map
@@ -79,6 +86,7 @@ function App() {
             setScore={setScore}
             pathArray={pathArray}
             setPathArray={setPathArray}
+            setMoves={setMoves}
           />
         </div>
         <div className="board-containers">

@@ -341,17 +341,24 @@ select:hover {
   display: flex;
   justify-content: center;
   position: absolute;
+  overflow-y: scroll;
+  background-color: #c9b1a5ef;
   z-index: 2;
 }
 #high-score-modal {
   width: 30vw;
   height: 30vh;
-  background-color: #c9b1a5ef;
+
   color: white;
   border-radius: 5px;
   text-align: center;
   font-size: 1em;
   z-index: 2;
+}
+
+#moves {
+}
+#moves h3 {
 }
 
 .high-score-modal button {

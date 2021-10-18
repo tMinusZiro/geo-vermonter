@@ -1,6 +1,13 @@
 import arrow from "./images/arrow.svg";
+const tempMovesArr = [];
 
 function MovementButtons(props) {
+ //push nav move to temparr, then set moves state
+ function updateMovesState() {
+  localStorage.setItem('Moves', JSON.stringify(tempMovesArr))
+  props.setMoves(tempMovesArr)
+ }
+
   //viewCenter is passed as a prop from App.js, this is the point where the map view is centered
   //the first part is longitude (north & south)
   let currentLong = props.viewCenter[0];
@@ -15,8 +22,13 @@ function MovementButtons(props) {
     props.setPathArray({ coordinates: [tempArr] });
   }
 
+
+
   //called on when the North button is clicked - moveNorth changes the current longitude by .001 and decreases score by 1
   function moveNorth() {
+    tempMovesArr.push('North')
+    console.log(tempMovesArr)
+    updateMovesState()
     props.setViewCenter([currentLong + 0.001, currentLat]);
     props.setScore(props.score - 1);
     updateArray(currentLong + 0.001, currentLat);
@@ -24,6 +36,8 @@ function MovementButtons(props) {
 
   //called on when the East button is clicked - moveEast changes the current longitude by .001 and decreases score by 1
   function moveEast() {
+    tempMovesArr.push('East')
+    updateMovesState()
     props.setViewCenter([currentLong, currentLat + 0.001]);
     props.setScore(props.score - 1);
     updateArray(currentLong, currentLat + 0.001);
@@ -31,12 +45,17 @@ function MovementButtons(props) {
 
   //called on when the South button is clicked - moveSouth changes the current longitude by .001 and decreases score by 1
   function moveSouth() {
+    tempMovesArr.push('South')
+    updateMovesState()
     props.setViewCenter([currentLong - 0.001, currentLat]);
+    props.setScore(props.score - 1);
     updateArray(currentLong - 0.001, currentLat);
   }
 
   //called on when the West button is clicked - moveWest changes the current longitude by .001 and decreases score by 1
   function moveWest() {
+    tempMovesArr.push('West')
+    updateMovesState()
     props.setViewCenter([currentLong, currentLat - 0.001]);
     props.setScore(props.score - 1);
     updateArray(currentLong, currentLat - 0.001);
@@ -44,6 +63,8 @@ function MovementButtons(props) {
 
   //called on when the return button is clicked - return recenters the map on the game's center with no change to score
   function moveReturn() {
+    tempMovesArr.push('Return')
+    updateMovesState()
     props.setViewCenter([props.center[0], props.center[1]]);
     updateArray(props.center[0], props.center[1]);
   }

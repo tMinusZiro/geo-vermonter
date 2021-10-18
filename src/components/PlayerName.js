@@ -6,8 +6,7 @@ const PlayerName = (props) => {
   const [name, setName] = useState("");
 
   function populateStorage() {
-    localStorage.setItem("recentHSName", name);
-    localStorage.setItem("recentHighScore", props.score);
+    
   }
 
   //stores synthetic event -user name- in local storage
@@ -46,7 +45,7 @@ const PlayerName = (props) => {
             if (!name) {
               alert(`Please Enter Your Name first`);
             } else if (name) {
-              populateStorage();
+              // populateStorage();
               window.location.reload();
             }
           }}

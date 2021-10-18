@@ -51,9 +51,9 @@ function Map(props) {
         <AdjustMap center={props.viewCenter} zoom={props.zoom} />
         <TileLayer
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+          attribution=""
         />
-        {/* for each quadrule in polyline coordiantes, create a path */}
+        {/* for each quadrule in polyline coordinates, create a path */}
         {polylineCoordinates.map((item) => {
           return (
             <Polyline
