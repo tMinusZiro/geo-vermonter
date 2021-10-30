@@ -120,6 +120,7 @@ function RandomSpot(props) {
         disabled={startState}
         style={deactivateStyle}
         onClick={(evt) => {
+          props.setDate(Date())
           clickButton();
           generatePointInsideVT();
           // setCenter sends the zoom adjustment to App.js

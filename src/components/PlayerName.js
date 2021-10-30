@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 const PlayerName = (props) => {
-  //tracks name input state
-  const [name, setName] = useState("");
-
-  function populateStorage() {
-    
+  function updateNameState() {
+    localStorage.setItem("name", JSON.stringify(props.name));
   }
+
+
 
   //stores synthetic event -user name- in local storage
   // useEffect(() => {
@@ -19,7 +18,7 @@ const PlayerName = (props) => {
 
   //----Event Handler----//
   //synthetic event value on input
-  const onChange = (e) => setName(e.target.value);
+  const onChange = (e) => props.setName(e.target.value);
 
   //div container handles toggle visible/hidden
   //the rest is modal title and an input for collecting user name to send to highscore list
@@ -34,7 +33,7 @@ const PlayerName = (props) => {
         <h2>For High Score List</h2>
         <input
           id="name-input"
-          value={name}
+          value={props.name}
           placeholder={"Name"}
           type="text"
           onChange={onChange}
@@ -42,11 +41,14 @@ const PlayerName = (props) => {
         <button
           id="play-again"
           onClick={() => {
-            if (!name) {
-              alert(`Please Enter Your Name first`);
-            } else if (name) {
-              // populateStorage();
-              window.location.reload();
+            if (!props.name) {
+              alert(`Please Enter Your Name First`);
+            } else if (props.name) {
+              updateNameState();
+      
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
             }
           }}
         >

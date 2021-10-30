@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header.js";
 import Map from "./components/Map";
 import MovementButtons from "./components/MovementButtons";
@@ -39,7 +39,7 @@ function App() {
   const [modalDisplay, setModalDisplay] = useState("hidden");
 
   //-----Name Modal State------//
-  //collects users name to associate high score with
+  //form to collect users name for game session
   const [playerNameDisplay, setPlayerNameDisplay] = useState("hidden");
 
   //----------Info Box State--------//
@@ -53,9 +53,48 @@ function App() {
 
   //---------Game Record State-------//
   const [moves, setMoves] = useState();
-  console.log('MOVES ARRAY')
-  console.log(moves ? moves : 'Loading')
+  const [guesses, setGuesses] = useState();
+  const [name, setName] = useState();
+  const [date, setDate] = useState();
+
+  const [gameRecord, setGameRecord] = useState({});
+  console.log('GAME RECORD')
+  console.log(gameRecord ? gameRecord : "Loading")
+  function updateGameRecord() {
+    setGameRecord([{
+      name: JSON.parse(localStorage.getItem('name')),
+      score: score,
+      moves: JSON.parse(localStorage.getItem('Moves')),
+      guesses: JSON.parse(localStorage.getItem('Guesses')),
+      date: JSON.parse(localStorage.getItem('date')),
+    }]);
+  }
+  function storeGameRecord(arr) {
+    localStorage.setItem("gamerecord", JSON.stringify(arr) )
+  }
+
+  //updates Game Record
+  useEffect(() => {
+    updateGameRecord()
+    storeGameRecord(gameRecord) 
+  },[score])
+
+  // let parseMovesArr = JSON.parse(localStorage.getItem('Moves'))
+  // console.log('PARSED MOVES ARRAY')
+  // console.log(parseMovesArr)
   
+  // let parseGuessesArr = JSON.parse(localStorage.getItem('Guesses'))
+  // console.log('PARSED Guesses ARRAY')
+  // console.log(parseGuessesArr)
+  
+  // let parseName = JSON.parse(localStorage.getItem('name'))
+  // console.log('PARSED Name ARRAY')
+  // console.log(parseName)
+  
+  // let parseDate = JSON.parse(localStorage.getItem('date'))
+  // console.log('PARSED Name ARRAY')
+  // console.log(parseDate)
+
 
 
   //We have organized our components inside div containers in the following manner:
@@ -108,6 +147,8 @@ function App() {
           viewHighScore={viewHighScore}
           setViewHighScore={setViewHighScore}
           score={score}
+          date={date}
+          setGameRecord={setGameRecord}
         />
         <Modal
           currentCenter={center}
@@ -121,12 +162,22 @@ function App() {
           playerNameDisplay={playerNameDisplay}
           highScore={highScore}
           setHighScore={setHighScore}
+          setGuesses={setGuesses}
+          setDate={setDate}
+          date={date}
         />
         <PlayerName
           setPlayerNameDisplay={setPlayerNameDisplay}
           playerNameDisplay={playerNameDisplay}
           score={score}
           setScore={setScore}
+          setName={setName}
+          name={name}
+          date={date}
+          guesses={guesses}
+          moves={moves}
+          gameRecord={gameRecord}
+          setGameRecord={setGameRecord}
         />
       </div>
 
@@ -144,6 +195,7 @@ function App() {
           playerNameDisplay={playerNameDisplay}
           highScore={highScore}
           setHighScore={setHighScore}
+          setDate={setDate}
         />
       </div>
     </>

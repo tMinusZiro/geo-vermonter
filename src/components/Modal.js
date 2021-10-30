@@ -19,12 +19,29 @@ import { useState } from "react";
 //if guess is false then user is alerted and -10 subtracted from point total
 //if cancel is clicked no change to score and user can continue to play
 
+
+const tempGuessesArr = [];
+
 //functional component
 const Modal = (props) => {
   // const [modalOpen, setModalOpen] = useState(false); //modal display state
   const [submittedCounty, setSubmittedCounty] = useState(""); //state for when guess button is clicked
   const [selectedCounty, setSelectedCounty] = useState({}); //intermediate state for when user selects a county from dropdown but does not submit it yet
   const [countyData, setCountyData] = useState({}); //state for current location of the user in the game
+
+
+  //push guesses to temparr, then set guesses state
+ function updateMovesState() {
+  localStorage.setItem('Guesses', JSON.stringify(tempGuessesArr))
+  props.setGuesses(tempGuessesArr)
+ }
+
+ function updateDateState() {
+  localStorage.setItem('date', JSON.stringify(props.date))
+ }
+
+
+
 
   // Closes our modal when canceled is clicked on
   function closeModal() {
@@ -93,6 +110,8 @@ const Modal = (props) => {
       ) {
         alert(`You Guessed Incorrectly`);
         props.setScore(props.score - 10);
+        tempGuessesArr.push(submittedCounty)
+        updateMovesState()
       } else {
         props.setInformation({
           latitude: countyData.lat,
@@ -100,10 +119,14 @@ const Modal = (props) => {
           county: countyData.address.county,
           town: countyData.address.village,
         });
+         
         //updates high score state using the current score
         props.setHighScore(props.score);
+        tempGuessesArr.push(submittedCounty)
+        updateMovesState()
         //toggles input name modal to pair with high score
         showPlayerNameModal();
+         updateDateState()
       }
     } else {
       alert(`Please Choose a County`);

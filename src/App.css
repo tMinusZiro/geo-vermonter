@@ -341,14 +341,16 @@ select:hover {
   display: flex;
   justify-content: center;
   position: absolute;
-  overflow-y: scroll;
+
   background-color: #c9b1a5ef;
   z-index: 2;
+  border: 1px solid chartreuse;
 }
 #high-score-modal {
   width: 30vw;
   height: 30vh;
-
+  overflow-y: scroll;
+  border: 3px solid blue;
   color: white;
   border-radius: 5px;
   text-align: center;
@@ -356,9 +358,20 @@ select:hover {
   z-index: 2;
 }
 
-#moves {
+#hs-move-wrapper {
+  background-color: cornflowerblue;
 }
-#moves h3 {
+#hs-guess-wrapper {
+  background-color: darkgreen;
+}
+#hs-score-wrapper {
+  background-color: darkorange;
+}
+#hs-name-wrapper {
+  background-color: teal;
+}
+#hs-date-wrapper {
+  background-color: red;
 }
 
 .high-score-modal button {
